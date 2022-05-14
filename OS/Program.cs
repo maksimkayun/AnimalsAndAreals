@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using OS.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,10 @@ builder.Services.AddSingleton<IAnimalStorage, AnimalStorage>();
 builder.Services.AddSingleton<IArealStorage, ArealStorage>();
 
 var app = builder.Build();
-
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
