@@ -4,7 +4,6 @@ using OS.Data;
 namespace OS.Controllers;
 
 [ApiController]
-[Route("[controller]")]
 public class ArealsController : ControllerBase
 {
     private readonly IArealStorage _context;

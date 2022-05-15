@@ -4,8 +4,6 @@ using OS.Data;
 namespace OS.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-
 public class AnimalsController : ControllerBase
 {
     private readonly IAnimalStorage _context;
