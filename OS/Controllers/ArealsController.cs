@@ -16,8 +16,8 @@ public class ArealsController : ControllerBase
     [HttpGet("api/areals")]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Areal>))]
     [ProducesResponseType(404)]
-    public IEnumerable<Areal> GetAllAreals()
+    public IActionResult GetAllAreals()
     {
-        return _context.GetAllAreals();
+        return Ok(_context.GetAllAreals());
     }
 }
