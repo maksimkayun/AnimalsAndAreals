@@ -26,8 +26,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
+// убираем редирект, чтобы не париться с ssl сертификатом
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
