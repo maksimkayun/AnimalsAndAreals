@@ -20,4 +20,22 @@ public class ArealsController : ControllerBase
     {
         return Ok(_context.GetAllAreals());
     }
+    
+    [HttpGet("api/areals/{id}")]
+    [ProducesResponseType(200, Type = typeof(Areal))]
+    [ProducesResponseType(404)]
+    public IActionResult GetArealById(int id)
+    {
+        var areal = _context.GetArealById(id);
+        return areal == default ? NotFound(areal) : Ok(areal);
+    }
+    
+    [HttpGet("api/areals/remove/{id}")]
+    [ProducesResponseType(200, Type = typeof(Areal))]
+    [ProducesResponseType(404)]
+    public IActionResult RemoveArealById(int id)
+    {
+        var areal = _context.RemoveArealById(id);
+        return areal == default ? NotFound(areal) : Ok(areal);
+    }
 }

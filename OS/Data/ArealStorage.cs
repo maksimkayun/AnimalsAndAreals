@@ -18,22 +18,28 @@ public class ArealStorage : IArealStorage
         return _areals.Select(e => e).ToList();
     }
 
-    public Areal GetArealById(int id)
+    public Areal? GetArealById(int id)
     {
-        throw new NotImplementedException();
+        return _areals.FirstOrDefault(e => e.Id == id);
     }
 
-    public Areal GetArealByName(string Name)
+    public Areal? GetArealByName(string name)
     {
-        throw new NotImplementedException();
+        return _areals.FirstOrDefault(e => e.Name.Equals(name));
     }
 
-    public Areal RemoveArealById(int id)
+    public Areal? RemoveArealById(int id)
     {
-        throw new NotImplementedException();
+        var areal = _areals.FirstOrDefault(e => e.Id == id);
+        if (areal != default)
+        {
+            _areals.Remove(areal);
+        }
+
+        return areal;
     }
 
-    public Areal AddAreal(Areal Areal)
+    public Areal AddAreal(Areal areal)
     {
         throw new NotImplementedException();
     }

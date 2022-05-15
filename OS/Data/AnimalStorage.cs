@@ -21,19 +21,24 @@ public class AnimalStorage : IAnimalStorage
         return _animals.Select(e => e).ToList();
     }
 
-    public Animal GetAnimalById(int id)
+    public Animal? GetAnimalById(int id)
     {
-        throw new NotImplementedException();
+        return _animals.FirstOrDefault(e => e.Id == id);
     }
 
-    public Animal GetAnimalByName(string Name)
+    public Animal? GetAnimalByName(string name)
     {
-        throw new NotImplementedException();
+        return _animals.FirstOrDefault(e => e.Name.Equals(name));
     }
 
-    public Animal RemoveAnimalById(int id)
+    public Animal? RemoveAnimalById(int id)
     {
-        throw new NotImplementedException();
+        var animal = _animals.FirstOrDefault(e => e.Id == id);
+        if (animal != default)
+        {
+            _animals.Remove(animal);
+        }
+        return animal;
     }
 
     public Animal AddAnimal(Animal animal)
