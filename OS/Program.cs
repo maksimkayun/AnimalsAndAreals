@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using OS.Controllers;
 using OS.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,13 +14,21 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IAnimalStorage, AnimalStorage>();
 builder.Services.AddSingleton<IArealStorage, ArealStorage>();
+
+builder.Services.AddHealthChecks().AddCheck<HealthCheckController>("health");
 builder.Host.UseSystemd();
 
 var app = builder.Build();
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHealthChecks("/health").RequireHost("localhost:5000");
+});
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -34,3 +44,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

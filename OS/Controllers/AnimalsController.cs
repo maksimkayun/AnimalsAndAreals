@@ -16,8 +16,8 @@ public class AnimalsController : ControllerBase
     [HttpGet("api/animals")]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Animal>))]
     [ProducesResponseType(404)]
-    public IEnumerable<Animal> GetAll()
+    public IActionResult GetAll()
     {
-        return _context.GetAllAnimals();
+        return Ok(_context.GetAllAnimals());
     }
 }
