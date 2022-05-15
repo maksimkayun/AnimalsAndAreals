@@ -133,5 +133,9 @@ sudo ufw allow 'Nginx Full'
 sudo ufw delete allow 'Nginx HTTP'
 
 !!! ИМЯ СЕРВЕРА - см в папке /etc/nginx/nginx.conf
-
+после его изменений обязательно нужно выполнить команды
+sudo nginx -t
+// проверяем нет ли ошибок, если есть - ИСПРАВЛЯЕМ и заново
+sudo nginx -s reload
+sudo systemctl restart nginx.service
 
